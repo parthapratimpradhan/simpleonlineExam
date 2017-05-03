@@ -1,0 +1,30 @@
+{
+	"time": 30,
+	"marks": 20,
+	"questions": [{
+			"text": "this is test questions 1 set 3",
+			"options": ["ans 1", "ans 2", "ans 3", "ans 4"],
+			"ans": 1
+		},
+		{
+			"text": "this is test questions 2",
+			"options": ["ans 1", "ans 2", "ans 3", "ans 4"],
+			"ans": 2
+		},
+		{
+			"text": "this is test questions 3",
+			"options": ["ans 1", "ans 2", "ans 3", "ans 4"],
+			"ans": 4
+		},
+		{
+			"text": "this is test questions 2",
+			"options": ["ans 1", "ans 2", "ans 3", "ans 4"],
+			"ans": 2
+		},
+		{
+			"text": "this is test questions 2",
+			"options": ["ans 1", "ans 2", "ans 3", "ans 4"],
+			"ans": 2
+		}
+	]
+}

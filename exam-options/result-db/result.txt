@@ -1,0 +1,9 @@
+John5a correctAns 0 wrongAnswer 0 userTotalMarks 0 time : 13:53:15 GMT+0530 (India Standard Time)
+anand correctAns 0 wrongAnswer 3 userTotalMarks 0 time : 13:59:10 GMT+0530 (India Standard Time)
+anand correctAns 0 wrongAnswer 3 userTotalMarks 0 time : 14:51:46 GMT+0530 (India Standard Time)
+anand correctAns 0 wrongAnswer 0 userTotalMarks 0 time : 14:52:39 GMT+0530 (India Standard Time)
+anand correctAns 2 wrongAnswer 2 userTotalMarks 8 time : 14:54:30 GMT+0530 (India Standard Time)
+anand correctAns 4 wrongAnswer 2 userTotalMarks 8 time : 14:56:46 GMT+0530 (India Standard Time) setName: set1.json
+anand correctAns 3 wrongAnswer 11 userTotalMarks 2 time : 14:57:29 GMT+0530 (India Standard Time) setName: set1.json
+anand1 correctAns 1 wrongAnswer 0 userTotalMarks 4 time : 15:05:50 GMT+0530 (India Standard Time) setName: wholeset1.json
+anand correctAns 2 wrongAnswer 2 userTotalMarks 4 time : 15:22:25 GMT+0530 (India Standard Time) setName: technical1.json
