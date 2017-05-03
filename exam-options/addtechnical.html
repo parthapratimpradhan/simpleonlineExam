@@ -1,0 +1,61 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>
+
+ <div class="btn-group btn-group-justified">
+  <a href="addtechnical.html" class="btn btn-primary active">Addtechnical Question</a>
+  <a href="addnontechnical.html" class="btn btn-primary">Addnontechnical Question</a>
+  <a href="createSet.html" class="btn btn-primary">Creat Set</a>
+</div>
+<form>
+  <div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Question</label>
+  <div class="col-10">
+    <input class="form-control" type="text" value="" id="example-text-input">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Option A</label>
+  <div class="col-10">
+    <input class="form-control" type="text" value="" id="example-text-input">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Option B</label>
+  <div class="col-10">
+    <input class="form-control" type="text" value="" id="example-text-input">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Option C</label>
+  <div class="col-10">
+    <input class="form-control" type="text" value="" id="example-text-input">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Option D</label>
+  <div class="col-10">
+    <input class="form-control" type="text" value="" id="example-text-input">
+  </div>
+</div>
+  <div class="form-group">
+    <label for="exampleSelect1">Correct Answer</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+      <option>D</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary" onclick="Submit()">Submit</button>
+</form>
+<script type="text/javascript">
+	function Submit(){  
+   window.open('addtechnical.html', '_self', false);
+}
+</script>
+</body>
+</html>
