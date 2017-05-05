@@ -1,48 +1,55 @@
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 </head>
 <body>
+<div class="form-group row">
 
- <div class="btn-group btn-group-justified">
-  <a href="addtechnical.html" class="btn btn-primary">Addtechnical Question</a>
-  <a href="addnontechnical.html" class="btn btn-primary active">Addnontechnical Question</a>
-  <a href="createSet.html" class="btn btn-primary">Creat Set</a>
+   <label for="example-text-input" class="col-2 col-form-label">Dump questions</label>
+  <textarea name="comment" class="dump-questions"></textarea>
+  <button class="importquest">Import</button>
 </div>
-<form>
+<!--  <div class="btn-group btn-group-justified">
+  <a href="addtechnical.html" class="btn btn-primary active">Addtechnical Question</a>
+  <a href="addnontechnical.html" class="btn btn-primary">Addnontechnical Question</a>
+  <a href="createSet.html" class="btn btn-primary">Creat Set</a>
+</div> -->
+time <input type="text" id="time">  
+marks <input type="text" id="marks">
+<!-- <form> -->
   <div class="form-group row">
   <label for="example-text-input" class="col-2 col-form-label">Question</label>
   <div class="col-10">
-    <input class="form-control" type="text" value="" id="example-text-input">
+    <input class="form-control" type="text" value="" id="q-text-input">
   </div>
 </div>
 <div class="form-group row">
   <label for="example-text-input" class="col-2 col-form-label">Option A</label>
   <div class="col-10">
-    <input class="form-control" type="text" value="" id="example-text-input">
+    <input class="form-control" type="text" value="" id="op1-text-input">
   </div>
 </div>
 <div class="form-group row">
   <label for="example-text-input" class="col-2 col-form-label">Option B</label>
   <div class="col-10">
-    <input class="form-control" type="text" value="" id="example-text-input">
+    <input class="form-control" type="text" value="" id="op2-text-input">
   </div>
 </div>
 <div class="form-group row">
   <label for="example-text-input" class="col-2 col-form-label">Option C</label>
   <div class="col-10">
-    <input class="form-control" type="text" value="" id="example-text-input">
+    <input class="form-control" type="text" value="" id="op3-text-input">
   </div>
 </div>
 <div class="form-group row">
   <label for="example-text-input" class="col-2 col-form-label">Option D</label>
   <div class="col-10">
-    <input class="form-control" type="text" value="" id="example-text-input">
+    <input class="form-control" type="text" value="" id="op4-text-input">
   </div>
 </div>
   <div class="form-group">
     <label for="exampleSelect1">Correct Answer</label>
-    <select class="form-control" id="exampleSelect1">
+    <select class="form-control" id="answer-option">
       <option>A</option>
       <option>B</option>
       <option>C</option>
@@ -50,7 +57,133 @@
     </select>
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  <button type="submit" class="btn btn-primary" onclick="addquestion()">Submit</button>
+<button type="submit" class="btn btn-primary exportQuestion">Export-Question</button>
+ <a download="nontechnical1.json" class="btn btn-primary" id="downloadlink" style="display: none">Download</a>
+<!-- </form> -->
+<div id="question-bank">
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Total question added : </label>
+  <div class="col-10">
+    <input type="text" name="" id="tblSize" readonly></input>
+  </div>
+</div>
+<table class="questions-table" id="tbquestion">
+  <tr>
+    <th>Questions</th>
+    <th>options1</th> 
+    <th>options2</th>
+    <th>options3</th>
+    <th>options4</th>
+    <th>Answer</th>
+    <th>Delete</th>
+  </tr>
+  
+</table>
+
+
+
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+  function Submit(){  
+   window.open('addtechnical.html', '_self', false);
+}
+
+$(".importquest").click(function(){
+  var parsedJson=JSON.parse($(".dump-questions").val());
+  if(parsedJson != null){
+    var questions = parsedJson.questions;
+    for(var i=0;i<questions.length;i++){
+        createquestions(questions[i]);
+    }
+  }
+  tablecount();
+})
+$(".exportQuestion").click(function(){
+  exportQuestion();
+
+})
+function createquestions(question){
+  var optionString="";
+  for(var i=0;i<question.options.length;i++){
+  optionString += "<td>"+question.options[i]+"</td>";
+  }
+  var htmlstring = "<tr><td>"+question.text+"</td>"+optionString+"<td>"+question.ans+"</td><td><button class='btnDelete'>Delete</button></td></tr>";
+  $(".questions-table").append(htmlstring);
+  return htmlstring;
+
+}
+function addquestion(){
+var question = new Object();
+question.text=$("#q-text-input").val();
+question.options = [];
+question.options[0]=$("#op1-text-input").val();
+question.options[1]=$("#op2-text-input").val();
+question.options[2]=$("#op3-text-input").val();
+question.options[3]=$("#op4-text-input").val();
+question.ans=$("#answer-option").val();
+question;
+createquestions(question);
+tablecount();
+}
+
+function exportQuestion() {
+  var allquestions={};
+allquestions.question=arrquestion;
+var arrquestion=[];
+
+var tables=$("table").find("tr")
+for(var i=1;i<tables.length;i++){
+  var row = tables.eq(i).find("td");
+  arrquestion.push(createbackJSON(row));
+  allquestions.question=arrquestion;
+  JSON.stringify(allquestions);
+}
+console.log(allquestions);
+//createFile(allquestions);
+ var link = document.getElementById('downloadlink');
+    link.href = createFile(JSON.stringify(allquestions));
+    link.style.display = 'block';
+}
+function createbackJSON(row){
+  var questions={};
+questions.options=[row.eq(1).text(),row.eq(2).text(),row.eq(3).text(),row.eq(4).text()];
+questions.ans=row.eq(5).text();
+questions.text=row.eq(0).text();
+return questions;
+}
+function createFile (jsondata) {
+    var textFile = null;
+    var data = new Blob([jsondata], {type: 'application/json'});
+
+    // If we are replacing a previously generated file we need to
+    // manually revoke the object URL to avoid memory leaks.
+    if (textFile !== null) {
+      window.URL.revokeObjectURL(textFile);
+    }
+
+    textFile = window.URL.createObjectURL(data);
+    return textFile;
+    resetDLink();
+  }
+  function resetDLink(){
+    var link = document.getElementById('downloadlink');
+    link.href = "";
+    link.style.display = 'none';
+  }
+  $("#tbquestion").on('click', '.btnDelete', function () {
+    $(this).closest('tr').remove();
+    tablecount();
+});
+ function tablecount(){
+   var rowCount = $('#tbquestion tr').length;
+   document.getElementById("tblSize").value = rowCount-1;
+ }
+</script>
+  
 </body>
 </html>

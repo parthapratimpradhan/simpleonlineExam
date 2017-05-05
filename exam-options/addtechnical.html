@@ -59,10 +59,15 @@ marks <input type="text" id="marks">
 
   <button type="submit" class="btn btn-primary" onclick="addquestion()">Submit</button>
 <button type="submit" class="btn btn-primary exportQuestion">Export-Question</button>
- <a download="qset.json" class="btn btn-primary" id="downloadlink" style="display: none">Download</a>
+ <a download="technical1.json" class="btn btn-primary" id="downloadlink" style="display: none">Download</a>
 <!-- </form> -->
 <div id="question-bank">
-  
+<div class="form-group row">
+  <label for="example-text-input" class="col-2 col-form-label">Total question added : </label>
+  <div class="col-10">
+    <input type="text" name="" id="tblSize" readonly></input>
+  </div>
+</div>
 <table class="questions-table" id="tbquestion">
   <tr>
     <th>Questions</th>
@@ -96,7 +101,7 @@ $(".importquest").click(function(){
         createquestions(questions[i]);
     }
   }
-
+  tablecount();
 })
 $(".exportQuestion").click(function(){
   exportQuestion();
@@ -123,6 +128,7 @@ question.options[3]=$("#op4-text-input").val();
 question.ans=$("#answer-option").val();
 question;
 createquestions(question);
+tablecount();
 }
 
 function exportQuestion() {
@@ -171,7 +177,12 @@ function createFile (jsondata) {
   }
   $("#tbquestion").on('click', '.btnDelete', function () {
     $(this).closest('tr').remove();
+    tablecount();
 });
+ function tablecount(){
+   var rowCount = $('#tbquestion tr').length;
+   document.getElementById("tblSize").value = rowCount-1;
+ }
 </script>
   
 </body>
