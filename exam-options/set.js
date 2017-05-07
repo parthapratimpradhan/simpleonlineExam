@@ -27,7 +27,13 @@ $("nav").on("click","a",function(e){
 	$("#submitAnswers").show();
 })
 function populateQuestions(data){
-	setCookie("timer",data.time,data.time);
+	updateCookie(data.id+"_timer",data.time);
+	$("#timer_container").removeClass("hide");
+
+	//var setTime = 1 *15,
+      //  display = document.querySelector('#time');
+    //startTimer(setTime, display);
+
 	var questions = data.questions;
 	len=questions.length;
 	totalmarks = data.marks;
@@ -47,6 +53,33 @@ function populateQuestions(data){
 		$("#accordion").append(htmlTemplate);
 	}
 
+}
+//setInterval(updateCookie,1000);
+
+function updateCookie(cookieName,durationInMin){
+	var durationInsec = durationInMin * 60;
+	setInterval(function(){
+		if(getCookie(cookieName) >= 0){
+			durationInsec = getCookie(cookieName) == "" ? durationInsec : getCookie(cookieName);
+			if(durationInsec == 0){
+				$("#submitAnswers").addClass("hide");
+			}else{
+				$("#submitAnswers").removeClass("hide");
+			}
+		}
+			durationInsec = durationInsec-1;
+			if(!(durationInsec < 0)){
+				setCookie(cookieName,durationInsec);
+			}
+		//}
+		var timeRem = getCookie(cookieName);
+		var min = parseInt(timeRem/60);
+		var sec = timeRem%60;
+		min = min < 10 ? "0"+min : min;
+		sec = sec < 10 ? "0"+sec : sec;
+		document.querySelector('#time').textContent = min + ":" + sec; 
+
+	},1000)
 }
 
 $("#submitAnswers").on("click",function(e){
@@ -110,10 +143,45 @@ function getCookie(cname) {
     return "";
 }
 
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exmin) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*1000));
+    d.setTime(d.getTime() + (exmin*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 //test
+
+
+function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since 
+        // startTimer() was called
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds; 
+
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            start = Date.now() + 1000;
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
+}
+
+/*var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);*/

@@ -1,5 +1,6 @@
 {
-	"time": 30,
+	"id" : "tech001",
+	"time": 1,
 	"marks": 108,
 	"active":true,
 	"questions": [{

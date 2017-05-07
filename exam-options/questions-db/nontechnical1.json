@@ -1,6 +1,8 @@
 {
+	"id":"nontech001",
 	"time": 30,
 	"marks": 20,
+	"active":"false",
 	"questions": [{
 			"text": "this is test questions 1 set 2",
 			"options": ["ans 1", "ans 2", "ans 3", "ans 4"],
