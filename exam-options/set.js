@@ -13,6 +13,17 @@ var setName=null;
     populateQuestions( data );
   });*/
 
+
+  (function checkcookie(){
+  	if(getCookie("username").length != 0){
+  		$("#user-details").removeClass("hide");
+	$("#username").text(getCookie("username"));
+  	}
+  })();
+$("#signout").off("click.signout").on("click.signout",function(){
+	document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+	window.location.href ="index.html";
+})
 $("nav").on("click","a",function(e){
 	setName = $(this).data("set");
 	var authenticated = getCookie("authenticated") || "false";
@@ -29,6 +40,8 @@ $("nav").on("click","a",function(e){
 function populateQuestions(data){
 	updateCookie(data.id+"_timer",data.time);
 	$("#timer_container").removeClass("hide");
+	$("#user-details").removeClass("hide");
+	$("#username").text(getCookie("username"));
 
 	//var setTime = 1 *15,
       //  display = document.querySelector('#time');

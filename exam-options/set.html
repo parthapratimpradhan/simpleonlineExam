@@ -13,7 +13,14 @@
 	#timer_container{
 
 	}
+	#signout{
+		    cursor: pointer;
 
+	}
+	h3{
+		    width: calc(100% - 200px);
+    display: inline-block;
+	}
 	.footer {
 	    
 	    bottom: 0;
@@ -40,8 +47,13 @@
 <body>
 <header class="header">
       <div class="container-fluid">
-        <h1 class="text-muted1">Ideal Technical Competitive Point
-	    </h1> 
+        <h3 class="text-muted1">Ideal Technical Competitive Point
+	    </h3> 
+	    <span id="user-details" class="hide">
+	    	<span id="username"></span>
+	    	<span id="signout" class="btn btn-info btn-sm">Signout</span>
+	    </span>
+	    
       </div>
     </header>
 <div class="container content-container">
